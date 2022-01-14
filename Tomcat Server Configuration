@@ -1,0 +1,19 @@
+Create new AWS EC2 instance with SSH & 8080 open port
+Login as sudo su
+download tomcat binary
+   wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.54/bin/apache-tomcat-8.5.73.tar.gz
+extract tomcat server binary
+   tar -xvzf apache-tomcat-8.5.73.tar.gz
+start tomcat server-->Goto apache-tomcat-9.0.54/bin/
+   ./startup.sh
+browse on web browser <Server IP>:8080
+follow the instructions provided on browser to access manager app
+change settings from manager context.xml
+   vim /home/ec2-user/apache-tomcat-8.5.73/webapps/manager/META-INF/context.xml
+change settings allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />  to allow=".*" />
+Go to apache-tomcat-8.5.73/conf/tomcat-users.xml and define user id password
+   vim /home/ec2-user/apache-tomcat-8.5.73/conf/tomcat-users.xml
+   <role rolename="manager-gui"/>
+   <user username="tomcat" password="12345" roles="manager-gui"/>
+   <user username="tomcat1" password="1234" roles="manager-script"/>
+Now you can able to access manager app 
