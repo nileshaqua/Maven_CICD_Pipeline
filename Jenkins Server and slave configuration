@@ -33,6 +33,12 @@ We have our Maven project on different server, So need to install Jenkins Slave.
    ssh-keyscan -H <slave ip> >>/var/lib/jenkins/.ssh/known_hosts
    chown jenkins:jenkins known_hosts
    chmod 700 known_hosts
+   
+Goto nmanage jenkins-->global configuration
+you need to mention JDK settings-->name-->path of the java JDK
+git installation git-->git
+maven installation-->name-->path of maven home directory
+
 Configure the Slave using Manage Jenkins
 Manage jenkins-->manage nodes-->new node-->provide node name--> Click on permanent --> Ok
 Name : Slave
@@ -45,3 +51,18 @@ Host: private IP of the
 Credentials: add credendials with SSH key
 Host Key Verification Strategy : Known host file varification strategy
 
+Create new Maven project configuration (CI)
+Description: Maven slave project
+Restrict where this project can be run-->Label Expression--> Write jenkins Slave label
+Source Code Management-->Git-->Enter repository url
+Build whenever a SNAPSHOT dependency is built
+For CI enter CI schedule in poll scm (cronjob)
+Build-->root pom-->pom.xml-->Goals and options-->clean install package.
+Post build execute shell and print "build successfully."
+
+Create new Maven project configuration (CD)
+Now we have to deploy project on tomcat server, We need to have pluging deploy container
+Post-build Actions--->deploy war/ear to container-->WAR/EAR files--> <mention path of file else **/*.war--->select container tomcat version-->create tomcat manager-script credentials
+Tomcat URL : <server public IP>:8080
+
+Goto build and check output on Tomcat URL
