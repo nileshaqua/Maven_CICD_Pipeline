@@ -12,3 +12,4 @@ JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.151-1.b12.amzn2.x86_64
 PATH=$PATH:$JAVA_HOME:$M2:$HOME/bin
 check mvn version by using mvn -version
 Create project using mvn archetype:generate
+create changes in index.jsp file and push project to Github
