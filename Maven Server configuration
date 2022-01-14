@@ -1,0 +1,14 @@
+Login to AWS EC2 Linux instance
+login as sudi su
+install javajdk package for maven
+download apache maven in binary file /opt/maven
+wget https://dlcdn.apache.org/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz
+extact the bainary file
+tar -xvzf apache-maven-3.8.4-bin.tar.gz
+configure java and maven environment variable in ~/.bash_profile as mentioned
+M2_HOME=/opt/maven/apache-maven-3.8.4
+M2=$M2_HOME/bin
+JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.151-1.b12.amzn2.x86_64
+PATH=$PATH:$JAVA_HOME:$M2:$HOME/bin
+check mvn version by using mvn -version
+Create project using mvn archetype:generate
