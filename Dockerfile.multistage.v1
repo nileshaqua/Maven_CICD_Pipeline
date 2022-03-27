@@ -1,6 +1,6 @@
 FROM maven AS builder
 WORKDIR /app
-COPY . .
+COPY Mywbapp .
 RUN mvn package
 
 FROM tomcat
